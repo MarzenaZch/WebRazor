@@ -1,1 +1,38 @@
+@using web1.Models;
 <h1>@ViewData["przywitanie"]</h1>
+    @{
+        List<Product>listTemp=(List<Product>)ViewData["products"];///konwersa z obiektu na liste stringow
+        //foreach (Product x in listTemp)
+        {
+            <table>
+            <thead>
+                <th>ProductID</th>
+                <th>ProductName</th>
+                <th>SupplierID</th>
+                <th>CategoryID</th>
+                 <th>UnitPrice</th>
+                <th>Discontinued</th>
+            </thead>
+            
+            
+            @foreach(Product x in listTemp)
+            {
+                <tr>
+                   
+                    
+                        <td> @x.ProductID</td>
+                        <td> @x.ProductName</td>
+                        <td> @x.SupplierID</td>
+                        <td> @x.CategoryID</td>
+                        <td> @x.UnitPrice</td>
+                        <td> @x.Discontinued</td>
+                        
+                    
+
+                </tr>
+              }
+                
+            </table>
+        }
+
+    }

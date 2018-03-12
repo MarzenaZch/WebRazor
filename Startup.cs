@@ -38,7 +38,8 @@ namespace webRazor
 
             //app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvcWithDefaultRoute();///zmina na defaultRoute
+            app.UseDeveloperExceptionPage();//pokazuje bledy w przegladarce 
         }
     }
 }
