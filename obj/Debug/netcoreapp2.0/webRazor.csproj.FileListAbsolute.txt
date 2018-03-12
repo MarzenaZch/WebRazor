@@ -1,0 +1,10 @@
+E:\webRazor\bin\Debug\netcoreapp2.0\webRazor.deps.json
+E:\webRazor\bin\Debug\netcoreapp2.0\webRazor.runtimeconfig.json
+E:\webRazor\bin\Debug\netcoreapp2.0\webRazor.runtimeconfig.dev.json
+E:\webRazor\bin\Debug\netcoreapp2.0\webRazor.dll
+E:\webRazor\bin\Debug\netcoreapp2.0\webRazor.pdb
+E:\webRazor\obj\Debug\netcoreapp2.0\webRazor.csproj.CoreCompileInputs.cache
+E:\webRazor\obj\Debug\netcoreapp2.0\webRazor.AssemblyInfoInputs.cache
+E:\webRazor\obj\Debug\netcoreapp2.0\webRazor.AssemblyInfo.cs
+E:\webRazor\obj\Debug\netcoreapp2.0\webRazor.dll
+E:\webRazor\obj\Debug\netcoreapp2.0\webRazor.pdb
