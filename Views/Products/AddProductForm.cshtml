@@ -1,0 +1,46 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function ()
+        {
+    $.get("http://localhost:5000/Products/GetAllProducts",
+            function(data,status)
+            {
+                for (let i = 0; i < data.length; i++) 
+                {
+                    let seleID=document.getElementById("inSelect2");
+                    
+                    let otpionid = document.createElement("option")
+                            otpionid.innerText = data[i].companyname;
+                            otpionid.value=data[i].supplierID;
+                            seleID.appendChild(otpionid);
+                            
+                            /////////////
+                            
+
+                      
+
+                }
+                console.log(data);
+
+            });
+
+    });
+</script>
+
+
+<form action="/Products/AddProduct" method="POST">
+    <h5 for="text">Product Name</h5>
+    <input type="text" name="ProductName">
+    <h5 for="number">Unit Price</h5>
+    <input type="number" name="UnitPrice">
+    <h5 for="checkbox">Discontinued</h5>
+    <input type="checkbox" name="Discontinued">
+    </br></br></br>
+    <input type="submit" value="Send form">
+</form>
+
+<select id=inSelect2>
+        <input type="checkbox" id="check">
+
+    </select>
+    

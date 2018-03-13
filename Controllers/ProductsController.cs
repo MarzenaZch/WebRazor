@@ -31,13 +31,13 @@ public class ProductsController :Controller
         connection.Open();
         SqlCommand command= new SqlCommand();
       //  command.CommandType=CommandType.Text;
-        if(sortBy==null)
+        if(sortBy==null)///argument przyjmuje null GetAllProduct przyjmuje product name zeby nie wywaliło błędu 
         {
             sortBy="ProductName";
 
         };
 
-        command.CommandText=$@"Select * from GetAllProduct order by {sortBy}";
+        command.CommandText=$@"Select * from GetAllProduct WHERE productname like '%{sortBy}%' order by {sortBy}";
         command.Connection=connection;
 
         SqlDataReader reader = command.ExecuteReader();
@@ -55,8 +55,26 @@ public class ProductsController :Controller
         productNames.Add(temp);
         }
 
-        ViewData["products"]=productNames;
+        ViewData["products"]=productNames;///wysłanie view elemntu 
         return View();
         
+    }
+    [HttpGet]
+    public ViewResult AddProductForm()
+    {
+        return View();
+    }
+    [HttpPost]//dodawnaie formularza 
+    public void AddProduct([FromForm] Product p)
+    {
+        SqlConnection connection= new SqlConnection();
+        connection.ConnectionString="Server=DESKTOP-0EKNFJB;Database=TSQL2012;Trusted_Connection=True";
+        connection.Open();
+        SqlCommand command= new SqlCommand();
+        command.CommandType=CommandType.Text;
+
+        command.CommandText=$"exec [dbo].[addProduct]  {p.ProductName},{p.SupplierID},{p.CategoryID},{p.UnitPrice} ,{p.Discontinued}";
+        command.Connection=connection;
+
     }
 }
