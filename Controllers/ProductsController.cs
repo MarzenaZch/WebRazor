@@ -7,7 +7,7 @@ using web1.Models;
 public class ProductsController :Controller
 {
     [HttpGet]
-    public ViewResult GetAllProducts()
+    public ViewResult GetAllProducts(string sortBy)
     {
        /* List <string> lista=new List<string>();
         lista.Add("pierwszy");
@@ -30,9 +30,14 @@ public class ProductsController :Controller
         connection.ConnectionString="Server=DESKTOP-0EKNFJB;Database=TSQL2012;Trusted_Connection=True";
         connection.Open();
         SqlCommand command= new SqlCommand();
-        command.CommandType=CommandType.Text;
+      //  command.CommandType=CommandType.Text;
+        if(sortBy==null)
+        {
+            sortBy="ProductName";
 
-        command.CommandText=$@"Select * from GetAllProduct";
+        };
+
+        command.CommandText=$@"Select * from GetAllProduct order by {sortBy}";
         command.Connection=connection;
 
         SqlDataReader reader = command.ExecuteReader();

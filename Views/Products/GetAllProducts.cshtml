@@ -2,16 +2,17 @@
 <h1>@ViewData["przywitanie"]</h1>
     @{
         List<Product>listTemp=(List<Product>)ViewData["products"];///konwersa z obiektu na liste stringow
+        string baseUrl="http://localhost:5000/Products/GetAllProducts?sortBy=";//link do wyszukiwania zmienna podpieta do th i wyszukiwanie do odpowiedniego elemntu 
         //foreach (Product x in listTemp)
         {
             <table>
             <thead>
-                <th>ProductID</th>
-                <th>ProductName</th>
-                <th>SupplierID</th>
-                <th>CategoryID</th>
-                 <th>UnitPrice</th>
-                <th>Discontinued</th>
+                <th><a style="text-decoration: none;"href=@baseUrl"ProductID">ProductID</a></th>
+                <th><a href=@baseUrl"ProductName">ProductName</a></th>
+                <th><a href=@baseUrl"SupplierID">SupplierID</a></th>
+                <th><a href=@baseUrl"CategoryID">CategoryID</a></th>
+                 <th><a href=@baseUrl"UnitPrice">UnitPrice</a></th>
+                <th><a href=@baseUrl"Discontinued">Discontinued</a></th>
             </thead>
             
             
