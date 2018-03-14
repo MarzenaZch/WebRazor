@@ -7,7 +7,7 @@ using web1.Models;
 public class ProductsController :Controller
 {
     [HttpGet]
-    public ViewResult GetAllProducts(string sortBy)
+    public ViewResult GetAllProducts(string sortBy, string searchP)
     {
        /* List <string> lista=new List<string>();
         lista.Add("pierwszy");
@@ -37,7 +37,7 @@ public class ProductsController :Controller
 
         };
 
-        command.CommandText=$@"Select * from GetAllProduct  order by {sortBy}";
+        command.CommandText=$@"Select * from GetAllProduct where productname like  '%{searchP}%'  order by {sortBy} ";
         command.Connection=connection;
 
         SqlDataReader reader = command.ExecuteReader();
