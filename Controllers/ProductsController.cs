@@ -37,7 +37,7 @@ public class ProductsController :Controller
 
         };
 
-        command.CommandText=$@"Select * from GetAllProduct WHERE productname like '%{sortBy}%' order by {sortBy}";
+        command.CommandText=$@"Select * from GetAllProduct  order by {sortBy}";
         command.Connection=connection;
 
         SqlDataReader reader = command.ExecuteReader();
@@ -75,6 +75,7 @@ public class ProductsController :Controller
 
         command.CommandText=$"exec [dbo].[addProduct]  {p.ProductName},{p.SupplierID},{p.CategoryID},{p.UnitPrice} ,{p.Discontinued}";
         command.Connection=connection;
+        command.ExecuteNonQuery();///dodowanie do sql
 
     }
 }
