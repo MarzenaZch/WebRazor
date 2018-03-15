@@ -10,7 +10,7 @@
                     let seleID=document.getElementById("inSelect2");
                     
                     let otpionid = document.createElement("option")
-                            otpionid.innerText = data[i].companyname;
+                            otpionid.innerText = data[i].categoryname;
                             otpionid.value=data[i].supplierID;
                             seleID.appendChild(otpionid);
                             
@@ -28,7 +28,7 @@
 </script>
 
 
-<br action="/Products/AddProduct" method="POST">
+<form action="/Products/AddProduct" method="POST">
 </br></br>
 <input type="number" name="SupplierID">
 <input type="number" name="ProductID">

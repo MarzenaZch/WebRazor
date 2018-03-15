@@ -2,11 +2,14 @@
 <h1>@ViewData["przywitanie"]</h1>
     @{
         List<Product>listTemp=(List<Product>)ViewData["products"];///konwersa z obiektu na liste stringow
-        string baseUrl="http://localhost:5000/Products/GetAllProducts?sortBy=";//link do wyszukiwania zmienna podpieta do th i wyszukiwanie do odpowiedniego elemntu 
+        string baseUrl="http://localhost:5000/Products/GetAllProducts";//link do wyszukiwania zmienna podpieta do th i wyszukiwanie do odpowiedniego elemntu 
         //foreach (Product x in listTemp)
+        int currentPage=int.Parse(ViewData["currentPage"].ToString());
+        string nextPage=@baseUrl+"?page="+(@currentPage+1).ToString();
+        string backPage=@baseUrl+"?page="+(@currentPage-1).ToString();
         {
      
-     <form action="/Products/GetAllProducts" method="GET">
+     <form class="form-inline" action="/Products/GetAllProducts" method="GET">
              <input class="form-control" name="searchP" type="text" placeholder="Search">
             <button class="btn btn-success" type="submit">Search</button>
     </form>
@@ -44,6 +47,9 @@
               }
                 
             </table>
+            <a href="@nextPage"><button type="button" class="btn">next</button></a>
+            <a href="@backPage"><button type="button" class="btn">back</button></a>
+            
         }
 
     }

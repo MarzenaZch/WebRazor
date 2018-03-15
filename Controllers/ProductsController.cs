@@ -7,7 +7,7 @@ using web1.Models;
 public class ProductsController :Controller
 {
     [HttpGet]
-    public ViewResult GetAllProducts(string sortBy, string searchP)
+    public ViewResult GetAllProducts(string sortBy, string searchP, int page)
     {
        /* List <string> lista=new List<string>();
         lista.Add("pierwszy");
@@ -36,8 +36,11 @@ public class ProductsController :Controller
             sortBy="ProductName";
 
         };
+        ViewData["currentPage"]=page;
 
-        command.CommandText=$@"Select * from GetAllProduct where productname like  '%{searchP}%'  order by {sortBy} ";
+        
+
+        command.CommandText=$@"Select * from GetAllProduct where productname like  '%{searchP}%'  order by {sortBy} OFFSET {page*5} ROWS FETCH NEXT 5 ROWS ONLY ";
         command.Connection=connection;
 
         SqlDataReader reader = command.ExecuteReader();
