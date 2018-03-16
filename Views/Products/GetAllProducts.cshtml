@@ -1,3 +1,6 @@
+@using webRazor
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
 @using web1.Models;
 <h1>@ViewData["przywitanie"]</h1>
     @{
@@ -49,10 +52,17 @@
               }
                 
             </table>
-            @Html.ActionLink("NEXT","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage+1} )
-            @Html.ActionLink("BACK","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage-1} )
+            int nextP=currentPage+1;
+            int backP=currentPage-1;
+            //@Html.ActionLink("NEXT","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage+1} )
+            //@Html.ActionLink("BACK","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage-1} )
             //<a href="@nextPage"><button type="button" class="btn">next</button></a>
             //<a href="@backPage"><button type="button" class="btn">back</button></a>
+            
+            <a asp-controller="Products",asp-action="GetAllProducts", asp-route-sortBy=@sortBy asp-route-page=@nextP><button type="button" class="btn">next</button></a>
+             <a asp-controller="Products",asp-action="GetAllProducts", asp-route-sortBy=@sortBy asp-route-page=@backP><button type="button" class="btn">back</button></a>
+            
+
             
         }
 
