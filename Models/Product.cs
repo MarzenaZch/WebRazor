@@ -1,4 +1,7 @@
-namespace web1.Models{
+
+namespace webRazor.Models
+
+{
 
 public class Product{
     public int ProductID{get; set;}

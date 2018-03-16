@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
-using web1.Models;
+using webRazor.Models;
 
 public class ProductsController :Controller
 {

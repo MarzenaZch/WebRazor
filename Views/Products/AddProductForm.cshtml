@@ -1,3 +1,12 @@
+
+@using webRazor
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
+@using webRazor.Models;
+@model webRazor.Models.Product
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(document).ready(function ()
@@ -28,7 +37,7 @@
 </script>
 
 
-<form action="/Products/AddProduct" method="POST">
+@**<form action="/Products/AddProduct" method="POST">
 </br></br>
 <input type="number" name="SupplierID">
 <input type="number" name="ProductID">
@@ -47,5 +56,20 @@
 <select id=inSelect2>
         <input type="checkbox" id="check">
 
-    </select>
+    </select>**@
+
+    @{
+        
+                    List<SelectListItem> categories=new List<SelectListItem>();
+        categories.Add(new SelectListItem{Value="4",Text="nazwa kategori"});
+       categories.Add(new SelectListItem{Value="2",Text="nazwa kategori"});
+
+    }
+   <form asp-controller="Products" asp-action="AddProductForm" >
+        </br>
+        ProductName:  <input asp-for="ProductName"  type="text"/></br>
+        UnitPrice:  <input  asp-for="UnitPrice" type="number"/></br>
+               <select asp-for="CategoryID" asp-items="categories"></select>     
+        <button type="submit" value="Send form">submit</button>
+    </form>
     
