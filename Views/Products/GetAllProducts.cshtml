@@ -2,11 +2,12 @@
 <h1>@ViewData["przywitanie"]</h1>
     @{
         List<Product>listTemp=(List<Product>)ViewData["products"];///konwersa z obiektu na liste stringow
-        string baseUrl="http://localhost:5000/Products/GetAllProducts";//link do wyszukiwania zmienna podpieta do th i wyszukiwanie do odpowiedniego elemntu 
+        string baseUrl="http://localhost:5000/Products/GetAllProducts?sortBy=";//link do wyszukiwania zmienna podpieta do th i wyszukiwanie do odpowiedniego elemntu 
         //foreach (Product x in listTemp)
         int currentPage=int.Parse(ViewData["currentPage"].ToString());
         string nextPage=@baseUrl+"?page="+(@currentPage+1).ToString();
         string backPage=@baseUrl+"?page="+(@currentPage-1).ToString();
+        string sortBy=ViewData["sortBy"].ToString();
         {
      
      <form class="form-inline" action="/Products/GetAllProducts" method="GET">
@@ -20,12 +21,13 @@
     
             <table class="table">
             <thead>
-                <th><a style="text-decoration: none;"href=@baseUrl"ProductID">ProductID</a></th>
-                <th><a href=@baseUrl"ProductName">ProductName</a></th>
-                <th><a href=@baseUrl"SupplierID">SupplierID</a></th>
-                <th><a href=@baseUrl"CategoryID">CategoryID</a></th>
-                 <th><a href=@baseUrl"UnitPrice">UnitPrice</a></th>
-                <th><a href=@baseUrl"Discontinued">Discontinued</a></th>
+           <th> @Html.ActionLink("ProductID","GetAllProducts","Products",new {sortBy="ProductID",page=currentPage} )</th>
+           <th> @Html.ActionLink("ProductName","GetAllProducts","Products",new {sortBy="ProductName",page=currentPage} )</th>
+           <th> @Html.ActionLink("SupplierID","GetAllProducts","Products",new {sortBy="SupplierID",page=currentPage} )</th>
+           <th> @Html.ActionLink("CategoryID","GetAllProducts","Products",new {sortBy="CategoryID",page=currentPage} )</th>
+           <th> @Html.ActionLink("UnitPrice","GetAllProducts","Products",new {sortBy="UnitPrice",page=currentPage} )</th>
+           <th> @Html.ActionLink("Discontinued","GetAllProducts","Products",new {sortBy="Discontinued",page=currentPage} )</th>
+              
             </thead>
             
             
@@ -47,8 +49,10 @@
               }
                 
             </table>
-            <a href="@nextPage"><button type="button" class="btn">next</button></a>
-            <a href="@backPage"><button type="button" class="btn">back</button></a>
+            @Html.ActionLink("NEXT","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage+1} )
+            @Html.ActionLink("BACK","GetAllProducts","Products",new {sortBy=sortBy,page=currentPage-1} )
+            //<a href="@nextPage"><button type="button" class="btn">next</button></a>
+            //<a href="@backPage"><button type="button" class="btn">back</button></a>
             
         }
 

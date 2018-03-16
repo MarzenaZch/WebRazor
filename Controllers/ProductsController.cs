@@ -21,9 +21,7 @@ public class ProductsController :Controller
         products.Add(new Product{
             ProductName="nam2",
             SupplierID=5
-
         });
-
         ViewData["products"]=products;
         return View();*/
         SqlConnection connection= new SqlConnection();
@@ -37,6 +35,7 @@ public class ProductsController :Controller
 
         };
         ViewData["currentPage"]=page;
+        ViewData["sortBy"]=sortBy;
 
         
 
