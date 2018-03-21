@@ -1,7 +1,7 @@
 @using webRazor
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
-@using web1.Models;
+@using webRazor.Models;
 <h1>@ViewData["przywitanie"]</h1>
     @{
         List<Product>listTemp=(List<Product>)ViewData["products"];///konwersa z obiektu na liste stringow

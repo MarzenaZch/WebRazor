@@ -7,69 +7,22 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function ()
-        {
-    $.get("http://localhost:5000/Category/GetAllCategory",
-            function(data,status)
-            {
-                for (let i = 0; i < data.length; i++) 
-                {
-                    let seleID=document.getElementById("inSelect2");
-                    
-                    let otpionid = document.createElement("option")
-                            otpionid.innerText = data[i].categoryname;
-                            otpionid.value=data[i].supplierID;
-                            seleID.appendChild(otpionid);
-                            
-                            /////////////
-                            
-
-                      
-
-                }
-                console.log(data);
-
-            });
-
-    });
-</script>
 
 
-@**<form action="/Products/AddProduct" method="POST">
-</br></br>
-<input type="number" name="SupplierID">
-<input type="number" name="ProductID">
-<input type="number" name="CategoryID">
-    <h5 for="text">Product Name</h5>
-    <input type="text" name="ProductName">
-    <h5 for="number">Unit Price</h5>
-    <input type="number" name="UnitPrice">
-    <h5 for="checkbox">Discontinued</h5>
-    <input type="checkbox" name="Discontinued">
-    
-    </br></br></br>
-    <input type="submit" value="Send form">
-</form>
 
-<select id=inSelect2>
-        <input type="checkbox" id="check">
 
-    </select>**@
 
     @{
         
-                    List<SelectListItem> categories=new List<SelectListItem>();
-        categories.Add(new SelectListItem{Value="4",Text="nazwa kategori"});
-       categories.Add(new SelectListItem{Value="2",Text="nazwa kategori"});
+           
+       List<SelectListItem>listTemp2=(List<SelectListItem>)ViewData["supplier"];
 
     }
    <form asp-controller="Products" asp-action="AddProductForm" >
         </br>
         ProductName:  <input asp-for="ProductName"  type="text"/></br>
         UnitPrice:  <input  asp-for="UnitPrice" type="number"/></br>
-               <select asp-for="CategoryID" asp-items="categories"></select>     
+               <select asp-for="CategoryID" asp-items="listTemp2"></select>     
         <button type="submit" value="Send form">submit</button>
     </form>
     

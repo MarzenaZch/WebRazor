@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using webRazor.Models;
 
 public class ProductsController :Controller
@@ -9,26 +10,12 @@ public class ProductsController :Controller
     [HttpGet]
     public ViewResult GetAllProducts(string sortBy, string searchP, int page)
     {
-       /* List <string> lista=new List<string>();
-        lista.Add("pierwszy");
-        lista.Add("drugi");
-        ViewData["lista"]=lista;*/
-       /* List <Product> products=new List<Product>();
-        products.Add(new Product{
-            ProductName="nam1",
-            SupplierID=4
-        });
-        products.Add(new Product{
-            ProductName="nam2",
-            SupplierID=5
-        });
-        ViewData["products"]=products;
-        return View();*/
+      
         SqlConnection connection= new SqlConnection();
         connection.ConnectionString="Server=DESKTOP-0EKNFJB;Database=TSQL2012;Trusted_Connection=True";
         connection.Open();
         SqlCommand command= new SqlCommand();
-      //  command.CommandType=CommandType.Text;
+      
         if(sortBy==null)///argument przyjmuje null GetAllProduct przyjmuje product name zeby nie wywaliło błędu 
         {
             sortBy="ProductName";
@@ -64,6 +51,33 @@ public class ProductsController :Controller
     [HttpGet]
     public ViewResult AddProductForm()
     {
+        SqlConnection connection= new SqlConnection();
+        connection.ConnectionString="Server=DESKTOP-0EKNFJB;Database=TSQL2012;Trusted_Connection=True";
+        connection.Open();
+        SqlCommand command= new SqlCommand();
+        command.CommandType=CommandType.Text;
+        command.CommandText=$@"Select * from Production.Suppliers";
+        command.Connection=connection;
+
+        SqlDataReader reader = command.ExecuteReader();
+      
+        List <SelectListItem> item=new List<SelectListItem>();
+         while(reader.Read())
+        {
+            Suppliers temp1=new Suppliers();
+            temp1.campanyName=reader["companyname"].ToString();
+            temp1.supplierID=int.Parse(reader["supplierid"].ToString());
+           
+            item.Add(new SelectListItem { Text =  temp1.campanyName,Value="1"});
+            
+            
+        }
+        ViewData["supplier"]=item;
+        
+        
+        
+        
+
         return View();
     }
     [HttpPost]//dodawnaie formularza 
