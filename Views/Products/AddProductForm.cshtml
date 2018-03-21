@@ -18,11 +18,11 @@
        List<SelectListItem>listTemp2=(List<SelectListItem>)ViewData["supplier"];
 
     }
-   <form asp-controller="Products" asp-action="AddProductForm" >
+   <form asp-controller="Products" asp-action="AddProduct" >
         </br>
         ProductName:  <input asp-for="ProductName"  type="text"/></br>
         UnitPrice:  <input  asp-for="UnitPrice" type="number"/></br>
-               <select asp-for="CategoryID" asp-items="listTemp2"></select>     
+               <select asp-for="SupplierID" asp-items="listTemp2"></select>     
         <button type="submit" value="Send form">submit</button>
     </form>
     
